@@ -27,6 +27,11 @@ jobs:
           docker tag appli_fastapi ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_IMAGE }}
           docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_IMAGE }}
 
+      - name: azure login
+        uses: azure/login/v2
+        with:
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
       - name: déploiement de l'application
         env:
           DATABASE_URL: ${{ secrets.DATABASE_URL }}

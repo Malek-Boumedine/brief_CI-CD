@@ -4,7 +4,7 @@ import pytest
 import numpy as np
 p_path = os.getcwd()
 sys.path.append(p_path)
-from modele.main import charger_donnees, charger_modele, metriques
+from src.main import charger_donnees, charger_modele, metriques
 from sklearn.model_selection import train_test_split
 
 

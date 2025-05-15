@@ -8,7 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 from sklearn.feature_selection import SelectKBest, f_regression
 from sklearn.linear_model import Lasso
-from modele.main import creer_pipeline, Preprocessor_Personnalise
+from src.main import creer_pipeline, Preprocessor_Personnalise
 
 
 

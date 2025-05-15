@@ -4,7 +4,7 @@ import os
 import sys
 p_path = os.getcwd()
 sys.path.append(p_path)
-from modele.main import charger_donnees
+from src.main import charger_donnees
 
 
 

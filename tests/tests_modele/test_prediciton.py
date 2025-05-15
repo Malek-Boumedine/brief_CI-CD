@@ -4,13 +4,17 @@ import pytest
 from dotenv import load_dotenv
 p_path = os.getcwd()
 sys.path.append(p_path)
-from modele.main import creer_exporter_modele, charger_modele, prediction
+from src.main import creer_exporter_modele, charger_modele, prediction
+
+
+load_dotenv()
 
 
 
 @pytest.fixture(scope="module")
 def chemin_modele():
-    return "src/modele_test.pkl"
+    chemin = os.getenv("MODELISATION_CHEMIN_MODEL", "src/modele_test.pkl")
+    return chemin
 
 
 def test_creer_exporter_modele(chemin_modele):

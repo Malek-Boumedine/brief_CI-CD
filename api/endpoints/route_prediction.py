@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends
 from typing import Annotated
-from modele.main import charger_modele, prediction
+from src.main import charger_modele, prediction
 from api.utils import get_current_user
 from dotenv import load_dotenv
 import os

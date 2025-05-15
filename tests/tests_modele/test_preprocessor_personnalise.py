@@ -3,10 +3,10 @@ import sys
 import pytest
 p_path = os.getcwd()
 sys.path.append(p_path)
-from modele.main import Preprocessor_Personnalise
+from src.main import Preprocessor_Personnalise
 
 import pandas as pd
-from modele.main import Preprocessor_Personnalise, categorie_bmi, categorie_age
+from src.main import Preprocessor_Personnalise, categorie_bmi, categorie_age
 
 
 

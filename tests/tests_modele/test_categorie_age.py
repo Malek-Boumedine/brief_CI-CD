@@ -3,7 +3,7 @@ import sys
 p_path = os.getcwd()
 sys.path.append(p_path)
 import pytest
-from modele.main import categorie_age
+from src.main import categorie_age
 
 
 

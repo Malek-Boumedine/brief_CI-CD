@@ -50,6 +50,7 @@ jobs:
           CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
           DNS_LABEL: ${{ secrets.DNS_LABEL }}
           REGION: ${{ secrets.REGION }}
+          AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
         run: |
           chmod +x ./deploiement_api.sh
           bash ./deploiement_api.sh

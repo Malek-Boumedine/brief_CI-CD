@@ -10,9 +10,9 @@ from dotenv import load_dotenv, find_dotenv
 dot_env_path = find_dotenv()
 load_dotenv(dotenv_path=dot_env_path, override=True)
 
-API_USER = os.getenv("API_USER", "admin")
-API_EMAIL = os.getenv("API_EMAIL", "admin")
-API_PASSWORD = os.getenv("API_PASSWORD", "admin")
+API_USER = os.getenv("API_USER", None)
+API_EMAIL = os.getenv("API_EMAIL", None)
+API_PASSWORD = os.getenv("API_PASSWORD", None)
 
 
 def populate_db():

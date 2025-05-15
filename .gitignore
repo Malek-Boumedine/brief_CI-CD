@@ -4,3 +4,4 @@ __pycache__/
 .env
 api_users.db
 notes.txt
+delete_api.sh

@@ -1,0 +1,50 @@
+name: CD
+
+on: 
+  push:
+    branches: [main]
+
+jobs: 
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: checkout du code
+        uses: actions/checkout@v4
+
+      - name: build l'image Docker
+        run: docker build -t appli_fastapi .
+
+      - name: connexion à Azure
+        uses: azure/docker-login@v2
+        with:
+          login-server: ${{ secrets.ACR_LOGIN_SERVER }}
+          username: ${{ secrets.ACR_USERNAME }}
+          password: ${{ secrets.ACR_PASSWORD }}
+
+      - name: push l'image Docker
+        run: |
+          docker tag appli_fastapi ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_IMAGE }}
+          docker push ${{ secrets.ACR_LOGIN_SERVER }}/${{ secrets.ACR_IMAGE }}
+
+      - name: déploiement de l'application
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          API_USER: ${{ secrets.API_USER }}
+          EMAIL_API: ${{ secrets.EMAIL_API }}
+          PASSWORD_API: ${{ secrets.PASSWORD_API }}
+          SECRET_KEY: ${{ secrets.SECRET_KEY }}
+          ALGORITHM: ${{ secrets.ALGORITHM }}
+          ACCESS_TOKEN_EXPIRE_MINUTES: ${{ secrets.ACCESS_TOKEN_EXPIRE_MINUTES }}
+          RESOURCE_GROUP: ${{ secrets.RESOURCE_GROUP }}
+          ACR_LOGIN_SERVER: ${{ secrets.ACR_LOGIN_SERVER }}
+          ACR_NAME: ${{ secrets.ACR_NAME }}
+          ACR_USERNAME: ${{ secrets.ACR_USERNAME }}
+          ACR_PASSWORD: ${{ secrets.ACR_PASSWORD }}
+          ACR_IMAGE: ${{ secrets.ACR_IMAGE }}
+          CONTAINER_NAME: ${{ secrets.CONTAINER_NAME }}
+          DNS_LABEL: ${{ secrets.DNS_LABEL }}
+          REGION: ${{ secrets.REGION }}
+        run: |
+          chmod +x ./deploiement_api.sh
+          bash ./deploiement_api.sh
